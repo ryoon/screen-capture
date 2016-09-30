@@ -70,6 +70,11 @@ class ScreenCapture : Form
 		label2.Size = new Size(60, 20);
 		label2.Text = "Save in";
 
+		Label label3 = new Label();
+		label3.Location = new Point(10, 150);
+		label3.Size = new Size(250, 20);
+		label3.Text = "Press Ctrl+PrintScreen to save the image.";
+
 		textbox1.Location = new Point(80, 50);
 		textbox1.Size = new Size(300, 20);
 		textbox1.Text = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -87,7 +92,7 @@ class ScreenCapture : Form
 		button2.Click += button2_Click;
 
 
-		Controls.AddRange(new Control[] { label1, label2, button1, button2, textbox1 });
+		Controls.AddRange(new Control[] { label1, label2, label3, button1, button2, textbox1 });
 
 	}
 
