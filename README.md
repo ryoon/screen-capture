@@ -12,6 +12,7 @@ Visual Studio is not required.
 
 ## How to capture your window in your display
 Press Ctrl+PrintScreen and you can get JPEG file of current window.
+Press Shift+PrintScreen and you can get JPEG file of your desktop.
 
 
 ## License
