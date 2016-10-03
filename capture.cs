@@ -27,12 +27,18 @@ class ScreenCapture : Form
 	private static extern ushort GlobalAddAtom(string lpString);
 
 	private const int MOD_CTRL = 0x02;
+	private const int MOD_SHIFT = 0x04;
 	private const int WM_HOTKEY = 0x312;
+
+	private const int VK_CONTROL = 0x11;
+	private const int VK_SHIFT = 0x10;
+	private const int VK_SNAPSHOT = 0x2c;
 
 	private UInt32 serialnum = 1;
 	private DateTime localTime;
 
-	private int myHotKeyID;
+	private int myHotKeyIDc;
+	private int myHotKeyIDs;
 
 	private TextBox textbox1 = new TextBox();
 
@@ -50,10 +56,15 @@ class ScreenCapture : Form
 
 	void CreateForm()
 	{
-		myHotKeyID = GlobalAddAtom("My Global Hot Key" + GetHashCode().ToString());
-		if (!RegisterHotKey(this.Handle, myHotKeyID, MOD_CTRL, (int)Keys.PrintScreen))
+		myHotKeyIDc = GlobalAddAtom("My Global Hot Key ctrl" + GetHashCode().ToString());
+		if (!RegisterHotKey(this.Handle, myHotKeyIDc, MOD_CTRL, (int)Keys.PrintScreen))
 		{
-			MessageBox.Show("Failed to assign a hotkey.");
+			MessageBox.Show("Failed to assign a hotkey (ctrl).");
+		}
+		myHotKeyIDs = GlobalAddAtom("My Global Hot Key shift" + GetHashCode().ToString());
+		if (!RegisterHotKey(this.Handle, myHotKeyIDs, MOD_SHIFT, (int)Keys.PrintScreen))
+		{
+			MessageBox.Show("Failed to assign a hotkey. (shift)");
 		}
 
 		Text = "Window Capture Program";
@@ -72,8 +83,8 @@ class ScreenCapture : Form
 
 		Label label3 = new Label();
 		label3.Location = new Point(10, 150);
-		label3.Size = new Size(250, 20);
-		label3.Text = "Press Ctrl+PrintScreen to save the image.";
+		label3.Size = new Size(350, 50);
+		label3.Text = "Press Ctrl+PrintScreen to save the active window.\nPress Shift+PrintScreen to save the desktop.";
 
 		textbox1.Location = new Point(80, 50);
 		textbox1.Size = new Size(300, 20);
@@ -101,7 +112,16 @@ class ScreenCapture : Form
 		base.WndProc(ref m);
 		if (m.Msg == WM_HOTKEY)
 		{
-			captureWindow();
+			int stateCtrl = GetAsyncKeyState(VK_CONTROL);
+			int stateShift = GetAsyncKeyState(VK_SHIFT);
+			if ((stateCtrl & 0x8000) == 0x8000)
+			{
+				captureWindow();;
+			}
+			else if ((stateShift & 0x8000) == 0x8000)
+			{
+				captureDesktop();
+			}
 		}
 	}
 
@@ -114,10 +134,25 @@ class ScreenCapture : Form
 			Bitmap bitmap = (Bitmap)clipdata.GetData(DataFormats.Bitmap);
 			localTime = DateTime.Now;
 			bitmap.Save(textbox1.Text + "\\" + serialnum.ToString("D4") + "_" +
+				localTime.ToString("yyyyMMddHHmmss") + ".jpg", ImageFormat.Jpeg);
+			serialnum++;
+		}
+	}
+
+	void captureDesktop()
+	{
+		SendKeys.SendWait("^{PRTSC}");
+		IDataObject clipdata = Clipboard.GetDataObject();
+		if (clipdata.GetDataPresent(DataFormats.Bitmap))
+		{
+			Bitmap bitmap = (Bitmap)clipdata.GetData(DataFormats.Bitmap);
+			localTime = DateTime.Now;
+			bitmap.Save(textbox1.Text + "\\" + serialnum.ToString("D4") + "_" +
 				localTime.ToString("yyyyMMddHHmmss") + ".jpg", ImageFormat.Jpeg); 
 			serialnum++;
 		}
 	}
+
 
 	void button1_Click(object sender, System.EventArgs e)
 	{
@@ -130,9 +165,13 @@ class ScreenCapture : Form
 
 	void button2_Click(object sender, System.EventArgs e)
 	{
-		if (!UnregisterHotKey(this.Handle, myHotKeyID))
+		if (!UnregisterHotKey(this.Handle, myHotKeyIDc))
 		{
-			MessageBox.Show("Failed to unregister the hotkey.");
+			MessageBox.Show("Failed to unregister the hotkey (ctrl).");
+		}
+		if (!UnregisterHotKey(this.Handle, myHotKeyIDs))
+		{
+			MessageBox.Show("Failed to unregister the hotkey. (shift)");
 		}
 		Application.Exit();
 	}
