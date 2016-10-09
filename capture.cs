@@ -14,13 +14,13 @@ using System.Drawing.Imaging;
 
 class ScreenCapture : Form
 {
- 	[DllImport("user32.dll")]
- 	private static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
- 	[DllImport("user32.dll")]
- 	private static extern short GetAsyncKeyState(System.Int32 vKey);
- 	[DllImport("user32.dll")]
+	[DllImport("user32.dll")]
+	private static extern short GetAsyncKeyState(System.Windows.Forms.Keys vKey);
+	[DllImport("user32.dll")]
+	private static extern short GetAsyncKeyState(System.Int32 vKey);
+	[DllImport("user32.dll")]
 	private static extern bool RegisterHotKey(IntPtr hWnd, int id, int modKey, int key);
- 	[DllImport("user32.dll")]
+	[DllImport("user32.dll")]
 	private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
 	[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
@@ -148,7 +148,7 @@ class ScreenCapture : Form
 			Bitmap bitmap = (Bitmap)clipdata.GetData(DataFormats.Bitmap);
 			localTime = DateTime.Now;
 			bitmap.Save(textbox1.Text + "\\" + serialnum.ToString("D4") + "_" +
-				localTime.ToString("yyyyMMddHHmmss") + ".jpg", ImageFormat.Jpeg); 
+				localTime.ToString("yyyyMMddHHmmss") + ".jpg", ImageFormat.Jpeg);
 			serialnum++;
 		}
 	}
