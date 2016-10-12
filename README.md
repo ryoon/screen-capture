@@ -5,12 +5,12 @@ On Microsoft Windows 7 Professional SP1 32-bit, for example, run
 
 For English UI version:
 ```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe capture.cs
+> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture.cs
 ```
 
 For Japanese UI version:
 ```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe capture-ja.cs
+> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture-ja.cs
 ```
 
 Visual Studio is not required.

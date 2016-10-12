@@ -5,12 +5,12 @@ Microsoft Windows 7 Professional SP1 32-bitでの例を以下に示します。
 
 英語ユーザーインターフェイス:
 ```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe capture.cs
+> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture.cs
 ```
 
 日本語ユーザーインターフェイス:
 ```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe capture-ja.cs
+> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture-ja.cs
 ```
 
 Visual Studioは必要ありません。
