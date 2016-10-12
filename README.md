@@ -16,7 +16,7 @@ For Japanese UI version:
 Visual Studio is not required.
 
 
-## How to capture your window in your display
+## How to capture your window in your display or your desktop
 Press Ctrl+PrintScreen and you can get JPEG file of current window.
 
 Press Shift+PrintScreen and you can get JPEG file of your desktop.
