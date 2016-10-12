@@ -25,3 +25,6 @@ Press Shift+PrintScreen and you can get JPEG file of your desktop.
 ## License
 This source code is released under the MIT/X license.
 See LICENSE file.
+
+## Author
+Ryo ONODERA <ryo_on@yk.rim.or.jp>
