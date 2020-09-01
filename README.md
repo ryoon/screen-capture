@@ -1,16 +1,10 @@
 This repository contains the simplest screen capture program source code.
 
 ## How to build
-On Microsoft Windows 7 Professional SP1 32-bit, for example, run
+On Microsoft Windows 10 Pro 2004 64-bit, for example, run
 
-For English UI version:
 ```
 > c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture.cs
-```
-
-For Japanese UI version:
-```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture-ja.cs
 ```
 
 Visual Studio is not required.
@@ -27,4 +21,4 @@ This source code is released under the MIT/X license.
 See LICENSE file.
 
 ## Author
-Ryo ONODERA <ryo_on@yk.rim.or.jp>
+Ryo ONODERA <ryo@tetera.org>
