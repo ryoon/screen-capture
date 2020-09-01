@@ -4,7 +4,7 @@ This repository contains the simplest screen capture program source code.
 On Microsoft Windows 10 Pro 2004 64-bit, for example, run
 
 ```
-> c:\Windows\Microsoft.NET\Framework\v2.0.50727\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture.cs
+> c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe /t:winexe /win32icon:.\icon\capture.ico capture.cs
 ```
 
 Visual Studio is not required.
